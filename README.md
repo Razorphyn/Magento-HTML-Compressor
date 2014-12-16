@@ -13,7 +13,7 @@ It leaves untouched the following tags:
 
 ####INSTALLATION
 1. Unzip the files 
-2. Disable Compilation if enabled
+2. Disable Compilation if enabled (*System*->*Tools*->*Compilation*)
 3. Upload the files inside the magento root folder
 4. Clean the cache
 
