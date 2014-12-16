@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--/**
+ * HTML Compressor
+ * Author: Razorphyn
+ * Suport Email: est.garndi@gmail.com
+ * Copyright: WTFPL(http://www.wtfpl.net/)
+**/-->
+<config>
+	<global>
+		<models>
+			<HTMLCompressor>
+				<class>Razorphyn_HTMLCompressor_Model</class>
+			</HTMLCompressor>
+		</models>
+		<events>
+			<http_response_send_before>
+				<observers>
+					<Razorphyn_HTMLCompressor_Observer_Unique>
+						<type>singleton</type>
+						<class>HTMLCompressor/observer</class>
+						<method>alterOutput</method>
+					</Razorphyn_HTMLCompressor_Observer_Unique>
+				</observers>
+			</http_response_send_before>    
+		</events>
+	</global>
+</config>
