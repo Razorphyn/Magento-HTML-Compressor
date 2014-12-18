@@ -11,7 +11,7 @@
 	{
 		public function alterOutput($observer)
 		{
-			$lib_path = Mage::getBaseDir('lib').'/Razorphyn/html_compressor.php';
+			$lib_path = Mage::getBaseDir('lib').'/Razorphyn/HTMLCompressor/html_compressor.php';
 			
 			include_once($lib_path);
 
