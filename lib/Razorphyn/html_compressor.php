@@ -71,7 +71,7 @@
 		//Replace unique id with script, style, pre original tag
 		$c=count($idarray);
 		for($i=0;$i<$c;$i++){
-			$string = str_replace($idarray[$i][0], "\n".$idarray[$i][1]."\n", $string);
+			$string = str_replace($idarray[$i][0], $idarray[$i][1], $string);
 		}
 
 		return $string;
