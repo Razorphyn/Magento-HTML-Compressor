@@ -12,6 +12,8 @@
 				<class>Razorphyn_HTMLCompressor_Model</class>
 			</HTMLCompressor>
 		</models>
+	</global>
+	<frontend>
 		<events>
 			<http_response_send_before>
 				<observers>
@@ -23,5 +25,5 @@
 				</observers>
 			</http_response_send_before>    
 		</events>
-	</global>
+	</frontend>
 </config>
