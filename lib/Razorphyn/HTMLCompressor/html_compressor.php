@@ -14,9 +14,9 @@
 		global $idarray;
 		$idarray=array();
 		
-		$search=array(	
-						'@<(\s)*pre[^>]*>(?:[^<]+|)</pre>@',	//Find PRE Tag
-						'@<(\s)*textarea(\b[^>]*?>[\\s\\S]*?</textarea>)\s*@',	//Find TEXTAREA
+		$search=array(
+						'@(<)\s*?(pre\b[^>]*?)(>)([\s\S]*?)(<)\s*(/\s*?pre\s*?)(>)@',	//Find PRE Tag
+						'@(<)\s*?(textarea\b[^>]*?)(>)([\s\S]*?)(<)\s*?(/\s*?textarea\s*?)(>)@'	//Find TEXTAREA
 					);
 		$string=preg_replace_callback($search,
 										function($m){
@@ -28,7 +28,6 @@
 										$string
 		);
 		
-		
 		$search = array(
 						'@( |\t|\f)+@',	// Shorten multiple whitespace sequences
 						'@^\s+|\s+$@',	// Trim lines
@@ -37,13 +36,15 @@
 		$replace = array(' ','',' ');
 
 		$string = preg_replace($search, $replace, $string);
-		
+
 		$search=array(	
 						'@<!--\[if\s(?:[^<]+|<(?!!\[endif\]-->))*<!\[endif\]-->@',	//Find IE Comments
-						'@^(<)\s*?(script\b[^>]*?)(>)([\s\S]*?)(<)\s*(/\s*?script\s*)(>)$@',	//Find SCRIPT Tag
-						'@//<!\[CDATA\[(?:[^<]+|)//]]>@',	//Find CDATA
-						'@^(<)\s*?(style\b[^>]*?)(>)([\s\S]*?)(<)\s*(/\s*?style\s*)(>)$@'	//Find STYLE Tag
+						'@(<)\s*?(script\b[^>]*?)(>)([\s\S]*?)(<)\s*?(/\s*?script\s*?)(>)@',	//Find SCRIPT Tag
+						'@(<)\s*?(style\b[^>]*?)(>)([\s\S]*?)(<)\s*?(/\s*?style\s*?)(>)@',	//Find STYLE Tag
+						'@(//<!\[CDATA\[([\s\S]*?)//]]>)@',	//Find commented CDATA
+						'@(<!\[CDATA\[([\s\S]*?)]]>)@'	//Find CDATA
 					);
+
 		$string=preg_replace_callback($search,
 										function($m){
 											$id='<!['.uniqid().']!>';
@@ -73,7 +74,7 @@
 		for($i=0;$i<$c;$i++){
 			$string = str_replace($idarray[$i][0], "\n".$idarray[$i][1]."\n", $string);
 		}
-
+		
 		return $string;
 	}
 ?>
